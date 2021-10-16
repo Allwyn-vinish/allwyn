@@ -1,0 +1,39 @@
+import React from 'react'
+import {sha256HashingGenerator,sha256HashingValidator} from './common/common-utils'
+
+function Nifis (){
+
+const url="https://apinifi.dev.ainqaplatform.in/api/v1/readDocument";
+
+const clicked = (e)=>{
+var myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+
+var sample={"db_name":"primarycare","entity":"CareType","filter":"CareType.activestatus==true","jwtttoken":"eyJhY2Nlc3NfdG9rZW4iOiJleUpoYkdjaU9pSlNVekkxTmlJc0luUjVjQ0lnT2lBaVNsZFVJaXdpYTJsa0lpQTZJQ0o2UjJFd2MzSnBORmhJU0ZwT1UycElYMkZMYVU1QlpscHZVa3RtTTNCSE1VeFFWRVZWZERjNU4wZzRJbjAuZXlKbGVIQWlPakUyTXpRd01qUXlOelFzSW1saGRDSTZNVFl6TkRBeU1qUTNOQ3dpYW5ScElqb2lOV0pqT0dNd01EWXRPRFZsWkMwMFpETXpMVGszTmpRdE9UazJZams0WXpOaE16WTRJaXdpYVhOeklqb2lhSFIwY0RvdkwydGxlV05zYjJGckxtUmxkaTVoYVc1eFlYQnNZWFJtYjNKdExtbHVMMkYxZEdndmNtVmhiRzF6TDFCeWFXMWhjbmxEWVhKbElpd2lZWFZrSWpvaVlXTmpiM1Z1ZENJc0luTjFZaUk2SWpBNE9HUmxNRFk0TFRZME9UTXRORGxrTmkxaFpEVXpMVFV6TURsa09XTTNNRFF4WlNJc0luUjVjQ0k2SWtKbFlYSmxjaUlzSW1GNmNDSTZJbTVwWm1rdFkyeHBaVzUwSWl3aWMyVnpjMmx2Ymw5emRHRjBaU0k2SWpBNE5qZ3hOekkwTFRRMFptUXRORGt4WkMxaFkyRmlMV0kwWkRFeFpUUXdZMlpqTWlJc0ltRmpjaUk2SWpFaUxDSnlaV0ZzYlY5aFkyTmxjM01pT25zaWNtOXNaWE1pT2xzaWIyWm1iR2x1WlY5aFkyTmxjM01pTENKMWJXRmZZWFYwYUc5eWFYcGhkR2x2YmlKZGZTd2ljbVZ6YjNWeVkyVmZZV05qWlhOeklqcDdJbUZqWTI5MWJuUWlPbnNpY205c1pYTWlPbHNpYldGdVlXZGxMV0ZqWTI5MWJuUWlMQ0p0WVc1aFoyVXRZV05qYjNWdWRDMXNhVzVyY3lJc0luWnBaWGN0Y0hKdlptbHNaU0pkZlgwc0luTmpiM0JsSWpvaVpXMWhhV3dnY0hKdlptbHNaU0lzSW1WdFlXbHNYM1psY21sbWFXVmtJanAwY25WbExDSnVZVzFsSWpvaWFtdDJJaXdpY0hKbFptVnljbVZrWDNWelpYSnVZVzFsSWpvaUt6a3hPVGM0T1RBMk9EUTBOQ0lzSW1kcGRtVnVYMjVoYldVaU9pSnFhM1lpTENKbVlXMXBiSGxmYm1GdFpTSTZJaUo5LlpVX3hJSGFlQnpNUnBEam9DTkwtLXJQZXFaUmVlTjB3WU04YzlwX1ZLeW5teFZoTlZuMFhpai1ZZmtaTFhhOHJOLUNSTHJ2c2hIZmt1ZE5TSm1QNlh1Z0xSUnZBUTFYaGVQT0l4REZuOVM0Q3ZvMmtkRGlhekFBRW1hSjVBYl9qdkhDc2NhYVlOdXB2MlpVTllWR1MwSWpZTWJydkw0X2xiWk9pVTU5Zms0dXBUOGo1Z09IQjJubXJSMlZ0SmZZT1VhdlZYQUJFM2VpbVk1M290bTlYVjlsczc1MXpKVVpzTGFxV3cwZk1UeUNiTW1xV3RaWkRRdHhtZ0ZkVHN0ODFudWFpZXpLUWYxMThNUnVhTE9PNFQySzJUNW9sa3VPSWtKY05laU1EZHVVc09idWVVM3F4NS1qSE8tMzhpcTRCbDdqRVNDbm12QVlKV1RXTjFsM0tBZyIsImV4cGlyZXNfaW4iOjE4MDAsIm5vdC1iZWZvcmUtcG9saWN5IjowLCJyZWZyZXNoX2V4cGlyZXNfaW4iOjE4MDAsInJlZnJlc2hfdG9rZW4iOiJleUpoYkdjaU9pSklVekkxTmlJc0luUjVjQ0lnT2lBaVNsZFVJaXdpYTJsa0lpQTZJQ0kyWXpVek1HRXdZUzFqTWpFMExUUTFNak10WVdabU5TMDNNVEkzWlRNeU5ETmtNakVpZlEuZXlKbGVIQWlPakUyTXpRd01qUXlOelFzSW1saGRDSTZNVFl6TkRBeU1qUTNOQ3dpYW5ScElqb2lNbUV3WTJZelpUWXRZemhoTUMwMFpXSXlMV0UzTWpNdE1UWTNNamM0WVRkbE9UUXlJaXdpYVhOeklqb2lhSFIwY0RvdkwydGxlV05zYjJGckxtUmxkaTVoYVc1eFlYQnNZWFJtYjNKdExtbHVMMkYxZEdndmNtVmhiRzF6TDFCeWFXMWhjbmxEWVhKbElpd2lZWFZrSWpvaWFIUjBjRG92TDJ0bGVXTnNiMkZyTG1SbGRpNWhhVzV4WVhCc1lYUm1iM0p0TG1sdUwyRjFkR2d2Y21WaGJHMXpMMUJ5YVcxaGNubERZWEpsSWl3aWMzVmlJam9pTURnNFpHVXdOamd0TmpRNU15MDBPV1EyTFdGa05UTXROVE13T1dRNVl6Y3dOREZsSWl3aWRIbHdJam9pVW1WbWNtVnphQ0lzSW1GNmNDSTZJbTVwWm1rdFkyeHBaVzUwSWl3aWMyVnpjMmx2Ymw5emRHRjBaU0k2SWpBNE5qZ3hOekkwTFRRMFptUXRORGt4WkMxaFkyRmlMV0kwWkRFeFpUUXdZMlpqTWlJc0luTmpiM0JsSWpvaVpXMWhhV3dnY0hKdlptbHNaU0o5Lm9fUENYY2hqTWJ5WFFaWEx2Ul9EY19ucVdzZTRZNk8xWkh4SEVWVndoODAiLCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJzZXNzaW9uX3N0YXRlIjoiMDg2ODE3MjQtNDRmZC00OTFkLWFjYWItYjRkMTFlNDBjZmMyIiwidG9rZW5fdHlwZSI6IkJlYXJlciJ9","return_fields":"{id:CareType.id,_id:CareType._id,careType:CareType.careType,description:CareType.description,carelevelRank:CareType.carelevelRank}"}
+// console.log("sample",sample)
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: JSON.stringify(sha256HashingGenerator(sample)),
+  redirect: 'follow'
+};
+fetch(url, requestOptions)
+  .then(response => response.json())
+ 
+  .then(result =>{
+    console.log("thisisconsle:",result)
+    // var sample1=sha256HashingGenerator(result.data)
+    // console.log("newly generated :",sample1);
+   var sample2=sha256HashingValidator(result)
+     console.log("data",sample2)
+  })
+  .catch(error => console.log('error', error));
+}
+    return(
+        <div>
+            <button onClick={(e)=>clicked(e)}>click</button>
+        </div>
+    )
+}
+
+export default Nifis;
